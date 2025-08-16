@@ -572,6 +572,18 @@ footer:after {
 }
 #auszeichnungen div img { align-self: center; max-height: 100px; object-fit: contain; width: auto; height: auto; }
 
+#kontakt-team-poster {
+  height: 40vh;
+  /* min-height: 700px; */
+  margin-bottom: 4rem;
+  position: relative;
+  background-image: url("../img/header-team.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center top;
+  margin-bottom: 0;
+}
+
 #callToAction { background-color: var(--c-background-gray); padding-top: 4rem; padding-bottom: 4rem; }
 #callToAction div.container { display: flex; flex-direction: column; align-items: center; text-align: center; }
 .firma { font-size: clamp(2.5rem, 1.6765rem + 3.7647vw, 4.5rem); font-weight: 100; }
