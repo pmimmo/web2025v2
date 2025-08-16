@@ -563,7 +563,7 @@ footer:after {
   right: max(1rem, calc((100vw - 1200px) / 2 + 1rem));
   width: var(--pmimmo-logo-width);
   aspect-ratio: 166 / 87; /* an dein Logo anpassen */
-  background-image: url("../img/logo-boegen.png"); /* Pfad bei Bedarf anpassen */
+  background-image: url("../img/logo-boegen.svg"); /* Pfad bei Bedarf anpassen */
   background-repeat: no-repeat;
   background-size: contain;
   background-position: right bottom;
