@@ -538,8 +538,6 @@ footer:after {
   pointer-events: none;
 }
 
-#immobilienangebote { background-color: var(--c-background-primary-opacity); padding-top: 4rem; padding-bottom: 4rem; }
-
 #nachhaltigkeit {
   height: 50vw;
   min-height: 700px;
