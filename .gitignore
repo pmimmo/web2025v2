@@ -17,6 +17,7 @@ Icon
 .fseventsd
 .TemporaryItems
 .apdisk
+.DS_Store
 
 # macOS Quick Look preview cache
 **/._*
@@ -29,3 +30,4 @@ Icon
 
 # Spotlight search indexes
 .metadata_never_index
+assets/.DS_Store
