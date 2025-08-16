@@ -738,8 +738,6 @@ html[data-theme="dark"] #toggle-dark i.fa-sun { display: inline; }
 
 @media (max-width: 900px) {
   nav .logo img { height: 50px; max-height: 50px; padding: .2rem 0; }
-  #leistungen > div > div { padding: 1.5rem 1rem; }
-
   .nav-toggle-button { display: block; }
   .nav-menu { display: none; }
   .nav-menu.open { display: flex; }
@@ -756,14 +754,31 @@ html[data-theme="dark"] #toggle-dark i.fa-sun { display: inline; }
   .nav-menu a { display: block; padding: 0.5rem 1rem; border-bottom: 1px solid var(--c-background-gray); }
 }
 
+/* Tablets */
 @media screen and (max-width: 768px) {
   #dekra-d1 .dekra-d1 { grid-template-columns: 1fr; }
   .ivd { grid-template-columns: 1fr; text-align: center; }
   #team .personen { 
   grid-template-columns: 1fr;
   gap: 5rem;
+  }
+  .kacheln {
+    grid-template-columns: 1fr 1fr;
+  }
 }
 
+/* Tablets */
 @media screen and (max-width: 750px) {
-  footer .container, footer .spalten { grid-template-columns: repeat(1, 1fr); text-align: center; }
+  
+}
+
+/* iPhone */
+@media screen and (max-width: 640px) {
+  .kacheln {
+    grid-template-columns: 1fr;
+  }
+  footer .container, footer .spalten { 
+    grid-template-columns: repeat(1, 1fr); 
+    text-align: center
+  }
 }
