@@ -188,6 +188,26 @@ main h3[id] { scroll-margin-top: var(--header-height); }
   main h3[id] { scroll-margin-top: var(--header-height-mobile); }
 }
 
+a.button {
+  background-color: var(--c-primary);
+  color: var(--c-text-light);
+  font-weight: 500;
+  padding: 1rem 2rem;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  margin: 0;
+}
+a.button:hover,
+a.button:focus-visible {
+  transform: scale(1.1);
+}
+
 /* --------------------------------------------------
    Layout helpers
 -------------------------------------------------- */
@@ -259,16 +279,21 @@ nav div {
   gap: 0 1rem;
   flex-wrap: wrap;
   align-content: center;
+  align-items: center;
   padding-top: .5rem;
   padding-bottom: .5rem;
 }
-nav a {
+
+/* Ensure primary menu items (links + CTA button) are vertically centered */
+#primary-menu { align-items: center; }
+#primary-menu .nav-item, #primary-menu .button { line-height: 1; }
+nav a.nav-item {
   color: var(--c-text);
   text-decoration: none;
   border-bottom: 3px solid var(--c-background);
   padding-bottom: .3rem;
 }
-nav a:hover { border-bottom: 3px solid var(--c-primary); background-color: inherit; }
+nav a.nav-item:hover { border-bottom: 3px solid var(--c-primary); background-color: inherit; }
 
 /* Active nav link */
 nav a[aria-current="page"] {
@@ -276,7 +301,10 @@ nav a[aria-current="page"] {
   font-weight: 500;
 }
 nav .logo img { height: 70px; max-height: 70px; padding: .5rem 0; display: block; }
-nav .logo a { border: none; }
+nav .logo a { 
+  border: none;
+  background: none;
+}
 
 /* Button-based hamburger */
 .nav-toggle-button { display: none; position: absolute; top: 1.2rem; right: 1rem; width: 34px; height: 24px; cursor: pointer; background: transparent; border: none; }
@@ -369,25 +397,6 @@ header.hero .hero-sub {
   margin-bottom: 1.5rem; 
   font-size: 1rem; 
   color: #ccc; }
-
-#callToAction .button {
-  background-color: var(--c-primary);
-  color: var(--c-text-light);
-  font-weight: 500;
-  padding: 1rem 2rem;
-  border-radius: 4px;
-  transition: all 0.3s ease;
-  display: inline-flex;
-  align-items: center;
-  gap: .5rem;
-  border: none;
-  cursor: pointer;
-  text-decoration: none;
-}
-#callToAction .button:hover,
-#callToAction .button:focus-visible {
-  transform: scale(1.1);
-}
 
 /* --------------------------------------------------
    Dekra / IVD blocks
@@ -619,8 +628,9 @@ footer:after {
 #callToAction { background-color: var(--c-background-gray); padding-top: 4rem; padding-bottom: 4rem; }
 #callToAction div.container { display: flex; flex-direction: column; align-items: center; text-align: center; }
 .firma { font-size: clamp(2.5rem, 1.6765rem + 3.7647vw, 4.5rem); font-weight: 100; }
-.button { padding: 1rem 2rem; margin-top: 1.5rem; background-color: var(--c-primary); transition: all 0.3s ease; }
-.button:hover { cursor: pointer; transform: scale(1.05); text-decoration: underline; }
+#callToAction a {
+  margin-top: 2rem;
+}
 
 #map {
   height: 30vh;
@@ -775,7 +785,11 @@ html[data-theme="dark"] #toggle-dark i.fa-sun { display: inline; }
     padding: 1rem 0;
     border-radius: 10px;
   }
-  .nav-menu a { display: block; padding: 0.5rem 1rem; border-bottom: 1px solid var(--c-background-gray); }
+  .nav-menu a.nav-item { 
+    display: block; 
+    padding: 0.5rem 1rem; 
+    border-bottom: 1px solid var(--c-background-gray); 
+  }
 }
 
 /* Tablets */
