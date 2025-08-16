@@ -19,6 +19,15 @@
   font-display: swap;
 }
 
+@font-face {
+  font-family: 'OpenSans';
+  font-stretch: 75% 100%;
+  font-style: normal;
+  font-weight: 300 800;
+  src: url('../fonts/Open_Sans/OpenSans-VariableFont_wdth\,wght.ttf') format('truetype');
+  font-display: swap;
+}
+
 /* --------------------------------------------------
    Root variables & theme
 -------------------------------------------------- */
@@ -65,7 +74,7 @@ html {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Roboto', 'Segoe UI', 'Helvetica Neue', 'Arial', sans-serif;
+  font-family: 'OpenSans', 'Segoe UI', 'Helvetica Neue', 'Arial', sans-serif;
   font-weight: 400;
 }
 
@@ -102,24 +111,27 @@ img {
 /* --------------------------------------------------
    Typography
 -------------------------------------------------- */
-h1, h2, h3, h4, .size-h3 { font-family: "Oswald"; }
+h1, h2, h3, h4, .size-h3 { 
+  font-family: "OpenSans";
+  font-stretch: 90%;
+ }
 
 h1 { font-weight: 600; }
 
 h2 {
-  font-weight: 500;
+  font-weight: 700;
   font-size: 2rem;
   margin-top: 2.5vh !important;
   margin-bottom: 4vh !important;
 }
 
 h3 {
-  font-weight: 300;
+  font-weight: 400;
   font-size: 2rem;
   margin-bottom: 2.5vh;
 }
 
-h4, #faq h3 {
+h4 {
   font-weight: 300;
   font-size: 1.5rem;
   margin-bottom: 2vh;
@@ -386,7 +398,7 @@ header.hero .hero-sub { margin-top: .5rem; margin-bottom: 1.5rem; font-size: 1re
 #dekra-d1 .dekra-d1 p.heading, .ivd p.heading { font-weight: 800; text-transform: uppercase; }
 #dekra-d1 .dekra-d1 img { max-height: 200px; object-fit: contain; }
 
-#ivd, #dekra-d1 .dekra-d1, #faq, #pmimmo { margin-top: 6rem; margin-bottom: 6rem; }
+#ivd, #dekra-d1 .dekra-d1, #pmimmo { margin-top: 6rem; margin-bottom: 6rem; }
 
 .ivd {
   display: grid;
@@ -462,73 +474,54 @@ header.hero .hero-sub { margin-top: .5rem; margin-bottom: 1.5rem; font-size: 1re
 /* --------------------------------------------------
    Leistungen
 -------------------------------------------------- */
-#leistungen { margin-bottom: 5rem; }
 
-#leistungen > div {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-content: flex-start;
-  align-items: stretch;
-  gap: 1.5rem;
-}
-
-#leistungen > div > div {
-  width: 500px;
-  background: radial-gradient(
-    circle at 50% -150%,
-    var(--c-primary) 0%,
-    var(--c-primary) 10%,
-    var(--c-background) 100%
-  );
-  border-radius: 2rem;
-  flex-grow: 1;
-  padding: 2rem;
-}
-
-#leistungen .logos, #team .siegel {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  gap: 1rem;
-  margin-top: 2rem;
-}
-/* Logos in Leistungen und Siegel im Team */
-#leistungen .logos img, #team .siegel img { height: 4rem; border-bottom: none; }
 
 /* --------------------------------------------------
-   FAQ
+   Kompetenzen
 -------------------------------------------------- */
 
-.faq {
+.kacheln {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 3rem;
-  justify-content: stretch;
-  align-content: stretch;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 2rem;
 }
 
-.faq h3 {
-  margin-top: 0;
+.kacheln div {
+  background-color: var(--c-primary);
+  background: linear-gradient(156deg, var(--c-primary) 0%, hsla(var(--c-primary-h), var(--c-primary-s), var(--c-primary-l), .8) 100%);
+  color: white;
+  aspect-ratio: 1 / 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 1rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  text-align: center;
+}
+
+.kacheln div:hover{
+  transform: scale(1.05);
+  box-shadow: 0px 0px 16px 0px rgba(0, 0, 0, 0.4);
+}
+
+.kacheln > div.spaeter {
+  background: var(--c-background);
+  border: 3px dashed var(--c-primary);
+  color: var(--c-text)
 }
 
 /* --------------------------------------------------
    Weitere Sektionen
 -------------------------------------------------- */
-#pmimmo { 
-  background-color: var(--c-background-gray);
-  padding-top: 2rem;
-  padding-bottom: 4rem;
-}
 
-/* Logo-Wasserzeichen in #pmimmo: unten an der Section, rechts auf Containerkante */
-#pmimmo, footer { position: relative; }
-#pmimmo, footer { 
+
+/* Logo-Wasserzeichen in footer: unten an der Section, rechts auf Containerkante */
+footer { position: relative; }
+footer { 
   --pmimmo-logo-width: clamp(300px, 22vw, 680px); 
   --pmimmo-logo-opacity: 0.08; 
 }
-#pmimmo::after, footer:after {
+footer:after {
   content: "";
   position: absolute;
   bottom: 0; /* ganz unten am grauen Bereich */
@@ -572,12 +565,12 @@ header.hero .hero-sub { margin-top: .5rem; margin-bottom: 1.5rem; font-size: 1re
 }
 #nachhaltigkeit h2 { margin-bottom: 2rem !important; }
 
-#mitglied { margin-top: 6rem; margin-bottom: 6rem; }
-#mitglied div {
+#auszeichnungen { margin-top: 6rem; margin-bottom: 6rem; }
+#auszeichnungen div {
   margin: 1.5rem auto;
   display: flex; flex-direction: row; justify-content: center; flex-wrap: wrap; gap: 2.5rem;
 }
-#mitglied div img { align-self: center; max-height: 100px; object-fit: contain; width: auto; height: auto; }
+#auszeichnungen div img { align-self: center; max-height: 100px; object-fit: contain; width: auto; height: auto; }
 
 #callToAction { background-color: var(--c-background-gray); padding-top: 4rem; padding-bottom: 4rem; }
 #callToAction div.container { display: flex; flex-direction: column; align-items: center; text-align: center; }
@@ -586,6 +579,10 @@ header.hero .hero-sub { margin-top: .5rem; margin-bottom: 1.5rem; font-size: 1re
 .button:hover { cursor: pointer; transform: scale(1.05); text-decoration: underline; }
 .button a { text-decoration: none; background-color: inherit; }
 .button a:hover { background-color: inherit; }
+
+#map {
+  height: 30vh;
+}
 
 /* --------------------------------------------------
    Highlight / Trust boxes
@@ -716,9 +713,6 @@ html[data-theme="dark"] #toggle-dark i.fa-sun { display: inline; }
 -------------------------------------------------- */
 @media screen and (max-width: 1000px) {
   footer .spalten { grid-template-columns: repeat(2, 1fr); }
-  .faq {
-  grid-template-columns: 1fr 1fr;
-  }
   footer::after {
     display: none;
   }
@@ -753,13 +747,6 @@ html[data-theme="dark"] #toggle-dark i.fa-sun { display: inline; }
   #team .person { flex-direction: column !important; align-items: center; gap: 1rem; }
   #team .person-info, #team .person .portrait { width: 100%; max-width: none; }
   #team .person .portrait { order: -1; margin-bottom: 0.5rem; }
-
-  #pmimmo { --pmimmo-logo-width: clamp(300px, 35vw, 600px); }
-  /* bei kleinen Viewports bündig 1rem vom Rand */
-  #pmimmo::after { right: 1rem; }
-
-  .faq {
-  grid-template-columns: 1fr;
 }
 
 @media screen and (max-width: 750px) {
