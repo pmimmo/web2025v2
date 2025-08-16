@@ -220,9 +220,9 @@ main h3[id] { scroll-margin-top: var(--header-height); }
   gap: 1rem;
   margin-bottom: 2rem;
 }
-#top-kontakt a { color: var(--c-text); }
+#top-kontakt a { color: var(--c-text-light); }
 #top-kontakt a:hover { text-decoration: underline; background-color: inherit; }
-#top-kontakt .fas { color: var(--c-text); }
+#top-kontakt .fas { color: var(--c-text-light); }
 
 /* --------------------------------------------------
    Navigation
@@ -364,18 +364,30 @@ header.hero p.lead {
   padding-block-end:    0;
 }
 
-header.hero .hero-sub { margin-top: .5rem; margin-bottom: 1.5rem; font-size: 1rem; color: #ccc; }
+header.hero .hero-sub { 
+  margin-top: .5rem; 
+  margin-bottom: 1.5rem; 
+  font-size: 1rem; 
+  color: #ccc; }
 
-.button.cta {
+#callToAction .button {
   background-color: var(--c-primary);
-  color: white;
-  text-decoration: none;
+  color: var(--c-text-light);
   font-weight: 500;
   padding: 1rem 2rem;
   border-radius: 4px;
   transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
 }
-.button.cta:hover { background-color: var(--c-primary-dark); transform: scale(1.025); }
+#callToAction .button:hover,
+#callToAction .button:focus-visible {
+  transform: scale(1.1);
+}
 
 /* --------------------------------------------------
    Dekra / IVD blocks
@@ -609,8 +621,6 @@ footer:after {
 .firma { font-size: clamp(2.5rem, 1.6765rem + 3.7647vw, 4.5rem); font-weight: 100; }
 .button { padding: 1rem 2rem; margin-top: 1.5rem; background-color: var(--c-primary); transition: all 0.3s ease; }
 .button:hover { cursor: pointer; transform: scale(1.05); text-decoration: underline; }
-.button a { text-decoration: none; background-color: inherit; }
-.button a:hover { background-color: inherit; }
 
 #map {
   height: 30vh;
