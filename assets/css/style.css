@@ -604,6 +604,45 @@ footer:after {
 }
 #auszeichnungen div img { align-self: center; max-height: 100px; object-fit: contain; width: auto; height: auto; }
 
+#standorte {
+  margin: 6rem auto;
+}
+
+#standorte .standorte {
+  display: grid;
+  grid-template-columns: 1fr;
+  align-content: stretch;
+  justify-items: center;
+  align-items: start;
+  gap: 3rem;
+}
+
+#standorte .standort-container {
+  /* background-color: red; */
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+}
+
+#standorte .content-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  flex: 0 0 50%;
+}
+
+#standorte .image-container {
+  flex: 0 0 50%;
+  text-align: center;
+}
+
+#standorte .image-container>img {
+  max-height: 280px;
+
+}
+
 #kontakt-team-poster {
   height: 40vh;
   /* min-height: 700px; */
@@ -792,6 +831,12 @@ html[data-theme="dark"] #toggle-dark i.fa-sun { display: inline; }
   }
 }
 
+/* Desktop Ansicht für Standorte  */
+@media screen and (min-width: 769px) {
+  #standorte .standort-container:nth-child(2) .image-container { order: -1; }
+  #standorte .standort-container:nth-child(2) .content-container { order: 1; }
+}
+
 /* Tablets */
 @media screen and (max-width: 768px) {
   #dekra-d1 .dekra-d1 { grid-template-columns: 1fr; }
@@ -802,6 +847,10 @@ html[data-theme="dark"] #toggle-dark i.fa-sun { display: inline; }
   }
   .kacheln {
     grid-template-columns: 1fr 1fr;
+  }
+  #standorte .standort-container {
+    flex-direction: column;
+    flex-wrap: nowrap;
   }
 }
 
