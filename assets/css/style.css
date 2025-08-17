@@ -570,6 +570,11 @@ header.hero .hero-sub {
 
 .front {
   background-color: var(--c-primary);
+  background: linear-gradient(
+  to bottom right,
+  hsl(var(--c-primary-h), var(--c-primary-s), var(--c-primary-l)),
+  hsl(var(--c-primary-h), var(--c-primary-s), 47%)
+);
   color: var(--c-text-light);
   border-radius: 1rem;
 }
@@ -587,7 +592,7 @@ header.hero .hero-sub {
 
 .f_icon_box {
   position: absolute;
-  inset: 0;                      /* füllt die ganze Front */
+  inset: 0;
   display: flex;
   align-items: center;
   justify-content: center;
