@@ -68,3 +68,35 @@ fetch("assets/components/nav.html")
 fetch("assets/components/footer.html")
     .then((res) => res.text())
     .then((html) => (document.getElementById("footer-placeholder").innerHTML = html));
+
+// Flip-Cards
+
+(function () {
+    document.querySelectorAll(".kacheln .flip_container").forEach(function (card) {
+        var sRound = card.querySelector(".s_round");
+        var bRound = card.querySelector(".b_round");
+        var flip = card.querySelector(".flip_box");
+        var sArrow = card.querySelector(".s_arrow");
+        if (!sRound || !bRound || !flip || !sArrow) return;
+
+        sRound.addEventListener("mouseenter", function () {
+            bRound.classList.add("b_round_hover");
+        });
+        sRound.addEventListener("mouseleave", function () {
+            bRound.classList.remove("b_round_hover");
+        });
+
+        sRound.addEventListener("click", function (e) {
+            e.preventDefault();
+            flip.classList.toggle("flipped");
+            sRound.classList.add("s_round_click");
+            sArrow.classList.toggle("s_arrow_rotate");
+            bRound.classList.toggle("b_round_back_hover");
+        });
+
+        sRound.addEventListener("transitionend", function () {
+            sRound.classList.remove("s_round_click");
+            sRound.classList.add("s_round_back");
+        });
+    });
+})();
