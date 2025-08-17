@@ -230,28 +230,85 @@
                     const shell = document.querySelector(".map-shell");
 
                     async function loadLeafletAssets() {
-                        // Leaflet CSS dynamisch (lokal) laden
-                        await new Promise((resolve, reject) => {
-                            const l = document.createElement("link");
-                            l.rel = "stylesheet";
-                            l.href = "./assets/vendor/leaflet/leaflet.css";
-                            l.onload = resolve;
-                            l.onerror = reject;
-                            document.head.appendChild(l);
-                        });
-                        // Leaflet JS dynamisch importieren (lokal)
-                        await import("./assets/vendor/leaflet/leaflet.js");
+                        // helper to load a CSS file
+                        const loadCSS = (href) =>
+                            new Promise((resolve, reject) => {
+                                const l = document.createElement("link");
+                                l.rel = "stylesheet";
+                                l.href = href;
+                                l.onload = resolve;
+                                l.onerror = reject;
+                                document.head.appendChild(l);
+                            });
+
+                        // helper to load a JS file sequentially (UMD builds like Leaflet)
+                        const loadJS = (src) =>
+                            new Promise((resolve, reject) => {
+                                const s = document.createElement("script");
+                                s.src = src;
+                                s.defer = true;
+                                s.onload = resolve;
+                                s.onerror = reject;
+                                document.head.appendChild(s);
+                            });
+
+                        // 1) CSS (Leaflet only)
+                        await loadCSS("./assets/vendor/leaflet/leaflet.css");
+
+                        // 2) JS (Leaflet) – UMD global will set window.L
+                        await loadJS("./assets/vendor/leaflet/leaflet.js");
                     }
 
                     async function initMap() {
                         await loadLeafletAssets();
-                        canvas.hidden = false; // Karte sichtbar machen
-                        shell.querySelector(".map-glass")?.remove(); // Glas-Overlay entfernen
 
-                        const map = L.map("map-canvas").setView([48.158348, 11.566903], 17);
+                        // canvas is already defined above
+                        canvas.hidden = false;
+                        document.querySelector(".map-glass")?.remove();
+
+                        // Detect touch devices (coarse pointer) vs. desktop
+                        const isCoarse = window.matchMedia("(pointer: coarse)").matches || "ontouchstart" in window;
+
+                        const map = L.map("map-canvas", {
+                            center: [48.158348, 11.566903],
+                            zoom: 17,
+                            scrollWheelZoom: !isCoarse, // Seite bleibt per Rad scrollbar
+                            touchZoom: true, // Pinch-Zoom bleibt erlaubt
+                            dragging: !isCoarse,
+                            tap: false, // <─ neu: iOS Tap-Handler aus (wichtig)
+                        });
+
+                        // Fallback/Safety: enforce 2-finger pan on touch
+                        if (isCoarse) {
+                            map.scrollWheelZoom.disable();
+                            map.on("touchstart", (e) => {
+                                const touches = e.originalEvent?.touches?.length || 0;
+                                if (touches >= 2) {
+                                    if (!map.dragging.enabled()) map.dragging.enable();
+                                } else {
+                                    if (map.dragging.enabled()) map.dragging.disable();
+                                }
+                            });
+                            map.on("touchmove", (e) => {
+                                const touches = e.originalEvent?.touches?.length || 0;
+                                if (touches >= 2) {
+                                    if (!map.dragging.enabled()) map.dragging.enable();
+                                } else {
+                                    if (map.dragging.enabled()) map.dragging.disable();
+                                }
+                            });
+                            map.on("touchend touchcancel", () => {
+                                if (map.dragging.enabled()) map.dragging.disable();
+                            });
+                        } else {
+                            // Desktop: ensure mouse dragging is on
+                            map.dragging.enable();
+                        }
+
                         L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
                             attribution: "&copy; OpenStreetMap-Mitwirkende",
                         }).addTo(map);
+
                         L.marker([48.158348, 11.566903]).addTo(map).bindPopup("Projekt M Immobilien");
                     }
 
