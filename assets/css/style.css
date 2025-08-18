@@ -41,7 +41,6 @@
   --c-text-light: hsl(0, 0%, 97%);
 
   /* Accent */
-  --c-red: #ff8787;
   --c-accent: #ffc107;
 
   --border-radius: 1rem;
@@ -147,7 +146,6 @@ li::marker { color: var(--c-primary) }
 .font-primary { color: var(--c-primary); }
 .font-primary-dark { color: var(--c-primary-dark); }
 .font-white { color: var(--c-background) }
-.font-red { color: var(--c-red); }
 
 .fas { color: var(--c-text); margin-right: 0.5rem; }
 
