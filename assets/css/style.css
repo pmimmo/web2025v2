@@ -193,7 +193,7 @@ main h3[id] { scroll-margin-top: var(--header-height); }
 }
 
 a.button, button.button {
-  background-color: var(--c-primary);
+  background: var(--c-background-primary-gradient-linear);
   color: var(--c-text-light);
   font-weight: 500;
   padding: 1rem 2rem;
