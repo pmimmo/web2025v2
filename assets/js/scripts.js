@@ -23,7 +23,15 @@ function initNav() {
     });
 
     // Manage aria-current on click
-    const links = menu.querySelectorAll('a[href^="#"]');
+    const links = Array.from(menu.querySelectorAll('a[href*="#"]'));
+    const getHash = (a) => {
+        // Prefer .hash, fall back to parsing the href (handles relative/absolute)
+        try {
+            return a.hash || new URL(a.getAttribute("href"), location.href).hash || "";
+        } catch {
+            return "";
+        }
+    };
     function setCurrent(link) {
         links.forEach((a) => a.removeAttribute("aria-current"));
         if (link) link.setAttribute("aria-current", "page");
@@ -37,25 +45,34 @@ function initNav() {
 
     // Optionally set current based on current hash at load
     if (location.hash) {
-        const active = Array.from(links).find((a) => a.getAttribute("href") === location.hash);
+        const active = links.find((a) => getHash(a) === location.hash);
         if (active) setCurrent(active);
     }
 
-    // Scroll-Spy: update aria-current based on scroll position
-    const sections = Array.from(document.querySelectorAll("main section[id]"));
-    window.addEventListener("scroll", () => {
-        let currentId = null;
-        const scrollY = window.scrollY + 100; // offset for header height
-        sections.forEach((section) => {
-            if (scrollY >= section.offsetTop && scrollY < section.offsetTop + section.offsetHeight) {
-                currentId = `#${section.id}`;
-            }
-        });
-        if (currentId) {
-            const activeLink = Array.from(links).find((a) => a.getAttribute("href") === currentId);
-            setCurrent(activeLink);
+    // --- Scroll-Spy via IntersectionObserver ---
+    const sections = Array.from(document.querySelectorAll("section[id]"));
+
+    function setCurrent(id) {
+        links.forEach((a) => a.removeAttribute("aria-current"));
+        const activeLink = links.find((a) => getHash(a) === "#" + id);
+        if (activeLink) activeLink.setAttribute("aria-current", "page");
+    }
+
+    const observer = new IntersectionObserver(
+        (entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting && entry.intersectionRatio >= 0.5) {
+                    setCurrent(entry.target.id);
+                }
+            });
+        },
+        {
+            threshold: 0.5, // mindestens 50% der Section sichtbar
         }
-    });
+    );
+
+    // Beobachtung starten
+    sections.forEach((sec) => observer.observe(sec));
 }
 
 fetch("assets/components/nav.html")
