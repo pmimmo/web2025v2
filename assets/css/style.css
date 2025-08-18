@@ -2,24 +2,6 @@
    Fonts
 -------------------------------------------------- */
 @font-face {
-  font-family: 'Roboto';
-  font-stretch: 75% 100%;
-  font-style: normal;
-  font-weight: 100 900;
-  src: url('../fonts/Roboto/Roboto-VariableFont_wdth,wght.ttf') format('truetype');
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Oswald';
-  font-stretch: 75% 100%;
-  font-style: normal;
-  font-weight: 200 700;
-  src: url('../fonts/Oswald/Oswald-VariableFont_wght.ttf') format('truetype');
-  font-display: swap;
-}
-
-@font-face {
   font-family: 'OpenSans';
   font-stretch: 75% 100%;
   font-style: normal;
