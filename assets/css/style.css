@@ -641,6 +641,38 @@ header.hero .hero-sub {
   opacity: 0.85;
 }
 
+ul.b_text {
+  list-style-type: disc;
+  list-style-position: inside;
+  /* margin: .5em 0 0 0; */
+  padding: 0;
+  font-size: 1rem;
+}
+
+ul.b_text li {
+  margin-bottom: .5em;
+}
+
+ul.b_text li::marker {
+  color: var(--c-primary);
+}
+
+/* Badge/Siegel-Leiste: feste bzw. responsive Höhe */
+.b_siegel {
+  --siegel-h: clamp(62px, 8vw, 80px);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: .75rem;
+  height: var(--siegel-h);
+}
+
+.b_siegel img {
+  height: 100%;
+  object-fit: contain;
+  max-height: none;
+}
+
 .b_button {
   position: relative;
   width: 150px;
