@@ -51,6 +51,10 @@
   --c-background-dark: hsl(0, 0%, 7%);
   --c-background-dark-opacity: hsla(0, 0%, 7%, 0.75);
   --c-background-gray: hsl(0, 0%, 92.5%);
+  --c-background-primary-gradient-linear: linear-gradient(
+    to bottom right,
+    hsl(var(--c-primary-h), var(--c-primary-s), var(--c-primary-l)),
+    hsl(var(--c-primary-h), var(--c-primary-s), 47%));
   --c-text: #333;
   --c-text-light: hsl(0, 0%, 97%);
 
@@ -229,7 +233,7 @@ a.button:focus-visible, button.button:focus-visible {
    Top contact bar
 -------------------------------------------------- */
 #top-kontakt {
-  background-color: var(--c-primary);
+  background: var(--c-background-primary-gradient-linear);
   padding-top: 1rem;
   padding-bottom: 1rem;
   display: flex;
@@ -570,11 +574,7 @@ header.hero .hero-sub {
 
 .front {
   background-color: var(--c-primary);
-  background: linear-gradient(
-  to bottom right,
-  hsl(var(--c-primary-h), var(--c-primary-s), var(--c-primary-l)),
-  hsl(var(--c-primary-h), var(--c-primary-s), 47%)
-);
+  background: var(--c-background-primary-gradient-linear);
   color: var(--c-text-light);
   border-radius: 1rem;
 }
