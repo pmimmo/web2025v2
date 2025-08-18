@@ -467,6 +467,38 @@ header.hero .hero-sub {
   margin-top: 4rem;
 }
 
+#team .person-info {
+  position: relative;
+}
+
+#team .zertifikate-persoenlich {
+  width: 50px;
+  position: absolute;
+  right: -10px;
+  bottom: 20px;
+}
+
+.portrait-wrapper {
+  position: relative;
+  display: inline-block; /* passt sich Bildgröße an */
+}
+
+.portrait-neuer {
+  display: block;
+  max-width: 300px;
+  height: auto;
+  margin-bottom: 2rem;
+  border-bottom: 1rem solid var(--c-primary);
+}
+
+.dia-badge {
+  position: absolute;
+  right: -70px;   /* Abstand vom rechten Rand */
+  bottom: -30px;  /* Abstand vom unteren Rand */
+  width: 230px;   /* Größe des Logos */
+  height: auto;
+}
+
 #team .portrait { 
   width: 100%; 
   max-width: 300px; 
