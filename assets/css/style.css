@@ -465,6 +465,7 @@ header.hero .hero-sub {
   justify-items: center;
   text-align: center;
   margin-top: 4rem;
+  overflow: hidden;
 }
 
 #team .person-info {
@@ -493,10 +494,18 @@ header.hero .hero-sub {
 
 .dia-badge {
   position: absolute;
-  right: -70px;   /* Abstand vom rechten Rand */
-  bottom: -30px;  /* Abstand vom unteren Rand */
-  width: 230px;   /* Größe des Logos */
+  right: 0px;   /* Abstand vom rechten Rand */
+  bottom: 0px;  /* Abstand vom unteren Rand */
+  width: 130px;   /* Größe des Logos */
   height: auto;
+  transform: translate(15%, -5%);
+  filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.25));
+  transition: transform 0.3s ease;
+  pointer-events: auto;
+}
+
+.dia-badge:hover {
+  transform: translate(15%, -5%) scale(1.05); /* 10% größer */
 }
 
 #team .portrait { 
