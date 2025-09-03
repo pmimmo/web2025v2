@@ -343,6 +343,14 @@ header {
 }
 #hero .dia img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
+#hero .hero-logo {
+  filter: brightness(0) invert(1) drop-shadow(0 0 4px rgba(0,0,0,.9));
+  width: 90%;
+  max-width: 250px;
+  display: block;
+  margin: 0 auto;
+}
+
 header #hero div {
   background: linear-gradient(
     to bottom,
