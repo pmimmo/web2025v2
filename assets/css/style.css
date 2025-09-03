@@ -49,7 +49,7 @@
 html {
   scroll-behavior: smooth;
   transition: background-color 0.3s ease, color 0.3s ease;
-  background-color: var(--c-primary);
+  background-color: #f9f9f9;
 }
 
 /* --------------------------------------------------
@@ -64,7 +64,8 @@ html {
 }
 
 body {
-  background-color: var(--c-background);
+  /* background-color: var(--c-background); */
+  background-color: white;
   color: var(--c-text);
   font-size: 1.2rem;
   line-height: 1.4;
@@ -72,6 +73,9 @@ body {
   -webkit-hyphens: auto;
   -ms-hyphens: auto;
   word-wrap: break-word;
+  width: 100%;
+  max-width: 1600px;
+  margin: auto;
 }
 
 .manual-hyphen { hyphens: manual; -webkit-hyphens: manual; -ms-hyphens: manual; }
