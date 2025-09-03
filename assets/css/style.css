@@ -64,7 +64,6 @@ html {
 }
 
 body {
-  /* background-color: var(--c-background); */
   background-color: white;
   color: var(--c-text);
   font-size: 1.2rem;
