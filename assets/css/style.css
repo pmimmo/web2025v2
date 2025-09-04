@@ -49,7 +49,7 @@
 html {
   scroll-behavior: smooth;
   transition: background-color 0.3s ease, color 0.3s ease;
-  background-color: #f9f9f9;
+  background-color: white;
 }
 
 /* --------------------------------------------------
@@ -634,7 +634,7 @@ header.hero .hero-sub {
 
 .f_icon_circle {
   /* position: absolute; */
-  width: 100px;
+  width: 150px;
   aspect-ratio: 1 / 1;
   background: #FFF;
   background: linear-gradient(240deg, rgba(255, 255, 255, .3) 50%, rgba(255, 255, 255, 0) 100%);
@@ -643,7 +643,7 @@ header.hero .hero-sub {
 
 .f_icon_circle i {
   position: relative;
-  top: 30px;
+  top: 60px;
   left: -20px;
   font-size: 4rem;
   opacity: .7;
@@ -986,7 +986,7 @@ footer:after {
 /* --------------------------------------------------
    Footer
 -------------------------------------------------- */
-footer { background-color: #ccc; 
+footer { background-color: #eee; 
   padding: 4rem 0; }
 footer .spalten { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; }
 footer .container .nav { display: flex; flex-direction: column; justify-content: flex-start; }
