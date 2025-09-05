@@ -379,7 +379,7 @@ header {
 }
 
 @media screen and (min-width: 769px) {
-  .hero-top { justify-content: flex-start; }
+  .hero-top { justify-content: flex-start; margin-top: 1rem; }
 }
 
 header #hero .verlauf {
