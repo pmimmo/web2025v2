@@ -208,6 +208,18 @@ a.button:focus-visible, button.button:focus-visible {
   padding: env(safe-area-inset-top) env(safe-area-inset-right) 0 env(safe-area-inset-left);
 }
 
+.sr-only { /* Screen-Reader only */
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
 .mb-m { margin-bottom: 2rem; }
 .mb-l { margin-bottom: 4rem; }
 .fill-primary { background-color: var(--c-primary); }
