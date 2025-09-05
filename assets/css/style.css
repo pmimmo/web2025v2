@@ -739,6 +739,16 @@ ul.b_text li::marker {
   height: 100%;
   object-fit: contain;
   max-height: none;
+  transition: all .5s ease;
+}
+
+.b_siegel img:hover{
+  transform: scale(2.5);
+  padding: .5rem;
+  background-color: white;
+  z-index: 1000;
+  border-radius: .25rem;
+  box-shadow: 0 0 4px rgba(0,0,0,.5);
 }
 
 .b_button {
