@@ -1205,3 +1205,18 @@ html[data-theme="dark"] #toggle-dark i.fa-sun { display: inline; }
 @media (prefers-reduced-motion: reduce) {
   .map-glass .button, a.button { transition: none; }
 }
+
+/* --------------------------------------------------
+   Integrations
+-------------------------------------------------- */
+
+/* Prevent hover styles from affecting ProvenExpert widget */
+.ProvenExpert_widget_container a:hover {
+  background-color: transparent !important;
+}
+
+/* Prevent inherited background and color for ProvenExpert widget links */
+.ProvenExpert_widget_container a {
+  background-color: transparent !important;
+  text-decoration: none !important;
+}
