@@ -52,6 +52,8 @@
 
         <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
         <meta name="referrer" content="no-referrer" />
+        <!-- Leaflet CSS (required for correct map layout/positioning) -->
+        <link rel="stylesheet" href="/assets/vendor/leaflet/leaflet.css" />
         <link rel="stylesheet" href="/assets/css/style.css" />
         <link rel="stylesheet" href="/assets/fontawesome-free-6.7.2-web/css/fontawesome.min.css" />
         <link rel="stylesheet" href="/assets/fontawesome-free-6.7.2-web/css/solid.min.css" />
@@ -435,114 +437,43 @@
                 <link rel="stylesheet" type="text/css" href="https://www.provenexpert.com/css/widget_landing.css" media="screen,print" />
                 <!-- ProvenExpert Bewertungssiegel Ende -->
             </aside>
-            <section id="map">
-                <div class="map-shell">
-                    <!-- CSS-basierter Platzhalter -->
-                    <div class="map-placeholder" aria-hidden="true"></div>
+            <section id="map"></section>
+            <script src="/assets/vendor/leaflet/leaflet.js"></script>
 
-                    <!-- Glas-Overlay mit CTA -->
-                    <div class="map-glass">
-                        <p>Die Karte ist deaktiviert.</p>
-                        <button id="map-consent" class="button" type="button" aria-controls="map-canvas" aria-label="Interaktive Karte laden">Karte laden</button>
-                    </div>
+            <script>
+                const lat = 48.158335;
+                const lng = 11.566951;
+                const zoom = 15;
 
-                    <!-- Die echte Karte (unsichtbar bis zum Klick) -->
-                    <div id="map-canvas" hidden></div>
-                </div>
+                const isTouch = "ontouchstart" in window || navigator.maxTouchPoints > 0;
 
-                <script type="module">
-                    const btn = document.getElementById("map-consent");
-                    const canvas = document.getElementById("map-canvas");
+                const map = L.map("map", {
+                    center: [lat, lng],
+                    zoom,
+                    dragging: !isTouch,
+                    scrollWheelZoom: false,
+                    touchZoom: false,
+                    doubleClickZoom: false,
+                    boxZoom: false,
+                    keyboard: true,
+                    zoomControl: true,
+                });
 
-                    const autoLoadMap = true;
+                map.attributionControl.setPrefix(false);
 
-                    async function loadLeafletAssets() {
-                        const loadCSS = (href) =>
-                            new Promise((resolve, reject) => {
-                                const l = document.createElement("link");
-                                l.rel = "stylesheet";
-                                l.href = href;
-                                l.onload = resolve;
-                                l.onerror = reject;
-                                document.head.appendChild(l);
-                            });
+                L.tileLayer("https://{s}.tile.openstreetmap.de/{z}/{x}/{y}.png", {
+                    maxZoom: 19,
+                    detectRetina: true,
+                    updateWhenIdle: true,
+                    keepBuffer: 1,
+                    crossOrigin: true,
+                    attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+                }).addTo(map);
 
-                        const loadJS = (src) =>
-                            new Promise((resolve, reject) => {
-                                const s = document.createElement("script");
-                                s.src = src;
-                                s.defer = true;
-                                s.onload = resolve;
-                                s.onerror = reject;
-                                document.head.appendChild(s);
-                            });
+                L.marker([lat, lng]).addTo(map).bindPopup("<img src='/assets/img/logo_pmi_web.svg' alt='Projekt M Immobilien GmbH – Logo' style='width:120px' />", { closeButton: false, maxWidth: 500, autoPan: true }).openPopup();
 
-                        await loadCSS("/assets/vendor/leaflet/leaflet.css");
-                        await loadJS("/assets/vendor/leaflet/leaflet.js");
-                    }
-
-                    async function initMap() {
-                        await loadLeafletAssets();
-
-                        canvas.hidden = false;
-                        document.querySelector(".map-glass")?.remove();
-
-                        const isCoarse = window.matchMedia("(pointer: coarse)").matches || "ontouchstart" in window;
-
-                        const map = L.map("map-canvas", {
-                            center: [48.158348, 11.566903],
-                            zoom: 17,
-                            scrollWheelZoom: !isCoarse,
-                            touchZoom: true,
-                            dragging: !isCoarse,
-                            tap: false,
-                        });
-
-                        if (isCoarse) {
-                            map.scrollWheelZoom.disable();
-                            map.on("touchstart", (e) => {
-                                const touches = e.originalEvent?.touches?.length || 0;
-                                if (touches >= 2) {
-                                    if (!map.dragging.enabled()) map.dragging.enable();
-                                } else {
-                                    if (map.dragging.enabled()) map.dragging.disable();
-                                }
-                            });
-                            map.on("touchmove", (e) => {
-                                const touches = e.originalEvent?.touches?.length || 0;
-                                if (touches >= 2) {
-                                    if (!map.dragging.enabled()) map.dragging.enable();
-                                } else {
-                                    if (map.dragging.enabled()) map.dragging.disable();
-                                }
-                            });
-                            map.on("touchend touchcancel", () => {
-                                if (map.dragging.enabled()) map.dragging.disable();
-                            });
-                        } else {
-                            map.dragging.enable();
-                        }
-
-                        L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-                            attribution: "&copy; OpenStreetMap-Mitwirkende",
-                        }).addTo(map);
-
-                        L.marker([48.158348, 11.566903]).addTo(map).bindPopup("Projekt M Immobilien");
-                    }
-
-                    if (autoLoadMap) {
-                        // Karte sofort laden
-                        initMap();
-                    } else {
-                        // Karte erst nach Klick
-                        btn?.addEventListener("click", initMap);
-                    }
-                </script>
-
-                <noscript>
-                    <p>Um die Karte zu sehen, aktivieren Sie bitte JavaScript. Beim Laden werden Anfragen an OpenStreetMap gesendet.</p>
-                </noscript>
-            </section>
+                map.whenReady(() => map.invalidateSize());
+            </script>
             <aside>
                 <!-- ProvenExpert Bewertungssiegel -->
                 <style type="text/css">
