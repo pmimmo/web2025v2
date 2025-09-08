@@ -75,14 +75,14 @@ function initNav() {
     sections.forEach((sec) => observer.observe(sec));
 }
 
-fetch("assets/components/nav.html")
+fetch("/assets/components/nav.html")
     .then((res) => res.text())
     .then((html) => {
         document.getElementById("nav-placeholder").innerHTML = html;
         initNav(); // Jetzt erst Nav-Logik starten
     });
 
-fetch("assets/components/footer.html")
+fetch("/assets/components/footer.html")
     .then((res) => res.text())
     .then((html) => (document.getElementById("footer-placeholder").innerHTML = html));
 
